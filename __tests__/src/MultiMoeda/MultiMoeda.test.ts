@@ -7,6 +7,8 @@ import Dollar from "../../../src/MultiMoeda/Dollar";
  * Tornar "quantidade" privada
  * Efeitos colaterais em Dollar? -> DONE
  * Arredondamento de dinheiro ?
+ * equals() -> DONE
+ * hashCode()
  *
  */
 
@@ -21,7 +23,7 @@ describe("MultiMoeda", () => {
     *
     */
    describe("Dollar", () => {
-      it("Multiplicação", () => {
+      it("Test Multiplication", () => {
          const five = new Dollar(5);
          let product = five.times(2);
 
@@ -29,6 +31,11 @@ describe("MultiMoeda", () => {
          product = five.times(3);
 
          expect(product.amount).toBe(15);
+      });
+
+      it("Test Equality", () => {
+         expect(new Dollar(5).equals(new Dollar(5))).toBeTruthy();
+         expect(new Dollar(5).equals(new Dollar(6))).toBeFalsy();
       });
    });
 });
