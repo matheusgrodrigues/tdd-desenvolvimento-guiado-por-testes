@@ -1,4 +1,5 @@
 import Dollar from "../../../src/MultiMoeda/Dollar";
+import Franc from "../../../src/MultiMoeda/Franc";
 
 /*
  * Objetivo
@@ -25,17 +26,21 @@ describe("MultiMoeda", () => {
    describe("Dollar", () => {
       it("Test Multiplication", () => {
          const five = new Dollar(5);
-         let product = five.times(2);
 
-         expect(product.amount).toBe(10);
-         product = five.times(3);
-
-         expect(product.amount).toBe(15);
+         expect(new Dollar(10).equals(five.times(2)));
+         expect(new Dollar(15).equals(five.times(3)));
       });
 
       it("Test Equality", () => {
          expect(new Dollar(5).equals(new Dollar(5))).toBeTruthy();
          expect(new Dollar(5).equals(new Dollar(6))).toBeFalsy();
+      });
+
+      it("Test Franc Multiplication", () => {
+         const five = new Franc(5);
+
+         expect(new Franc(10).equals(five.times(2)));
+         expect(new Franc(15).equals(five.times(3)));
       });
    });
 });
