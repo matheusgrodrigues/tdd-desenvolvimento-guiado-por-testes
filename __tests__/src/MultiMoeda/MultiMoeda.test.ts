@@ -1,5 +1,4 @@
-import Dollar from "../../../src/MultiMoeda/Dollar";
-import Franc from "../../../src/MultiMoeda/Franc";
+import Money from "../../../src/MultiMoeda/Money";
 
 /*
  * Objetivo
@@ -33,24 +32,22 @@ describe("MultiMoeda", () => {
     */
    describe("Dollar", () => {
       it("Test Multiplication", () => {
-         const five = new Dollar(5);
-
-         expect(new Dollar(10).equals(five.times(2)));
-         expect(new Dollar(15).equals(five.times(3)));
+         const five = Money.dollar(5);
+         expect(Money.dollar(10).equals(five.times(2)));
+         expect(Money.dollar(15).equals(five.times(3)));
       });
 
       it("Test Equality", () => {
-         expect(new Dollar(5).equals(new Dollar(5))).toBeTruthy();
-         expect(new Dollar(5).equals(new Dollar(6))).toBeFalsy();
-         expect(new Franc(5).equals(new Dollar(6))).toBeFalsy();
-         expect(new Franc(5).equals(new Dollar(5))).toBeFalsy();
+         expect(Money.dollar(5).equals(Money.dollar(5))).toBeTruthy();
+         expect(Money.dollar(5).equals(Money.dollar(6))).toBeFalsy();
+         expect(Money.franc(5).equals(Money.dollar(6))).toBeFalsy();
+         expect(Money.franc(5).equals(Money.dollar(5))).toBeFalsy();
       });
 
       it("Test Franc Multiplication", () => {
-         const five = new Franc(5);
-
-         expect(new Franc(10).equals(five.times(2)));
-         expect(new Franc(15).equals(five.times(3)));
+         const five = Money.franc(5);
+         expect(Money.franc(10).equals(five.times(2)));
+         expect(Money.franc(15).equals(five.times(3)));
       });
    });
 });
