@@ -15,7 +15,7 @@ import Money from "../../../src/MultiMoeda/Money";
  * Duplicação de Dolar/Franco
  * Igualdade comum
  * Multiplicação comum
- * Comparar Francos com Dólares
+ * Comparar Francos com Dólares -> DONE
  * Moeda?
  *
  */
