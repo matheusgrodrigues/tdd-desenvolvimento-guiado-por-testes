@@ -1,4 +1,3 @@
-import Franc from "../../../src/MultiMoeda/Franc";
 import Money from "../../../src/MultiMoeda/Money";
 
 /*
@@ -42,23 +41,12 @@ describe("MultiMoeda", () => {
       it("Test Equality", () => {
          expect(Money.dollar(5).equals(Money.dollar(5))).toBeTruthy();
          expect(Money.dollar(5).equals(Money.dollar(6))).toBeFalsy();
-         expect(Money.franc(5).equals(Money.dollar(6))).toBeFalsy();
          expect(Money.franc(5).equals(Money.dollar(5))).toBeFalsy();
-      });
-
-      it("Test Franc Multiplication", () => {
-         const five = Money.franc(5);
-         expect(Money.franc(10).equals(five.times(2)));
-         expect(Money.franc(15).equals(five.times(3)));
       });
 
       it("Test Currency", () => {
          expect(Money.dollar(1).currency()).toBe("USD");
          expect(Money.franc(1).currency()).toBe("CHF");
-      });
-
-      it("Test Different Class Equality", () => {
-         expect(new Money(10, "CHF").equals(new Franc(10, "CHF")));
       });
    });
 });

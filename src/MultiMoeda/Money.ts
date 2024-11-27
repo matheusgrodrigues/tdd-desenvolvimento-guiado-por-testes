@@ -9,7 +9,7 @@ class Money {
 
    equals(object: object): boolean {
       const money = object as Money;
-      return this.amount === money.amount && object.constructor === this.constructor;
+      return this.amount === money.amount && money._currency === this._currency;
    }
 
    times(multiplier: number): Money {
@@ -25,13 +25,11 @@ class Money {
    }
 
    static dollar(amount: number): Money {
-      const { default: Dolar } = require("./Dollar");
-      return new Dolar(amount, "USD");
+      return new Money(amount, "USD");
    }
 
    static franc(amount: number): Money {
-      const { default: Franc } = require("./Franc");
-      return new Franc(amount, "CHF");
+      return new Money(amount, "CHF");
    }
 }
 
