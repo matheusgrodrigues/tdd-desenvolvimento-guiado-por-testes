@@ -12,12 +12,12 @@ import Money from "../../../src/MultiMoeda/Money";
  * Igualdade de null
  * Igualdade de objeto
  * 5 CHF *2 = 10 CHF -> [DONE]
- * Duplicação de Dolar/Franco
- * Igualdade comum
- * Multiplicação comum
- * Comparar Francos com Dólares -> DONE
- * Moeda? -> DONE
- * Deletar testFrancMultiplication?
+ * Duplicação de Dolar/Franco -> [DONE]
+ * Igualdade comum -> [DONE]
+ * Multiplicação comum -> DONE
+ * Comparar Francos com Dólares -> [DONE]
+ * Moeda? -> [DONE]
+ * Deletar testFrancMultiplication? -> [DONE]
  *
  */
 
