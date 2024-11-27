@@ -1,5 +1,11 @@
 abstract class Money {
    protected amount: number = 0;
+   protected _currency: string | null = "";
+
+   constructor(amount: number, currency: string | null) {
+      this.amount = amount;
+      this._currency = currency;
+   }
 
    equals(object: object): boolean {
       const money = object as Money;
@@ -8,14 +14,18 @@ abstract class Money {
 
    abstract times(multiplier: number): Money;
 
+   currency() {
+      return this._currency;
+   }
+
    static dollar(amount: number): Money {
       const { default: Dolar } = require("./Dollar");
-      return new Dolar(amount);
+      return new Dolar(amount, "USD");
    }
 
    static franc(amount: number): Money {
       const { default: Franc } = require("./Franc");
-      return new Franc(amount);
+      return new Franc(amount, "CHF");
    }
 }
 

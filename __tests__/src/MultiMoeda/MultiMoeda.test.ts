@@ -16,7 +16,8 @@ import Money from "../../../src/MultiMoeda/Money";
  * Igualdade comum
  * Multiplicação comum
  * Comparar Francos com Dólares -> DONE
- * Moeda?
+ * Moeda? -> DONE
+ * Deletar testFrancMultiplication?
  *
  */
 
@@ -48,6 +49,11 @@ describe("MultiMoeda", () => {
          const five = Money.franc(5);
          expect(Money.franc(10).equals(five.times(2)));
          expect(Money.franc(15).equals(five.times(3)));
+      });
+
+      it("Test Currency", () => {
+         expect(Money.dollar(1).currency()).toBe("USD");
+         expect(Money.franc(1).currency()).toBe("CHF");
       });
    });
 });
