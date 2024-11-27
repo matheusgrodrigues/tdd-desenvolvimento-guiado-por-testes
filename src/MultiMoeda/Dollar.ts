@@ -5,10 +5,6 @@ class Dollar extends Money {
       super(amount, currency);
    }
 
-   times(multiplier: number): Money {
-      return Money.dollar(this.amount * multiplier);
-   }
-
    currency(): string | null {
       return this._currency;
    }

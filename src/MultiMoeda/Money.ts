@@ -1,4 +1,4 @@
-abstract class Money {
+class Money {
    protected amount: number = 0;
    protected _currency: string | null = "";
 
@@ -12,10 +12,16 @@ abstract class Money {
       return this.amount === money.amount && object.constructor === this.constructor;
    }
 
-   abstract times(multiplier: number): Money;
+   times(multiplier: number): Money {
+      return new Money(this.amount * multiplier, this._currency);
+   }
 
    currency() {
       return this._currency;
+   }
+
+   toString() {
+      return `${this.amount} ${this._currency}`;
    }
 
    static dollar(amount: number): Money {

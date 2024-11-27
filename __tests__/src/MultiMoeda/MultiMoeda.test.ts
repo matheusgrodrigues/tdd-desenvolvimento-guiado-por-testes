@@ -1,3 +1,4 @@
+import Franc from "../../../src/MultiMoeda/Franc";
 import Money from "../../../src/MultiMoeda/Money";
 
 /*
@@ -54,6 +55,10 @@ describe("MultiMoeda", () => {
       it("Test Currency", () => {
          expect(Money.dollar(1).currency()).toBe("USD");
          expect(Money.franc(1).currency()).toBe("CHF");
+      });
+
+      it("Test Different Class Equality", () => {
+         expect(new Money(10, "CHF").equals(new Franc(10, "CHF")));
       });
    });
 });

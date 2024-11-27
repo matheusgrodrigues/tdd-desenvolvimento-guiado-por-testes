@@ -5,10 +5,6 @@ class Franc extends Money {
       super(amount, currency);
    }
 
-   times(multiplier: number): Money {
-      return Money.franc(this.amount * multiplier);
-   }
-
    currency(): string | null {
       return this._currency;
    }
