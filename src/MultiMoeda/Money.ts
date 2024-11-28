@@ -1,4 +1,6 @@
-class Money {
+export interface Expression {}
+
+class Money implements Expression {
    protected amount: number = 0;
    protected _currency: string | null = "";
 
@@ -30,6 +32,10 @@ class Money {
 
    static franc(amount: number): Money {
       return new Money(amount, "CHF");
+   }
+
+   plus(addend: Money) {
+      return new Money(this.amount + addend.amount, this._currency);
    }
 }
 

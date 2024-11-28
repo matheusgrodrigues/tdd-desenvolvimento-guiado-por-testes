@@ -1,23 +1,14 @@
+import Bank from "../../../src/MultiMoeda/Bank";
 import Money from "../../../src/MultiMoeda/Money";
 
 /*
  * Objetivo
  *
- * Multiplicação: 5*2 = $10 -> [DONE]
- * Tornar "quantidade" privada -> [DONE]
- * Efeitos colaterais em Dollar? -> [DONE]
  * Arredondamento de dinheiro ?
- * equals() -> [DONE]
  * hashCode()
  * Igualdade de null
  * Igualdade de objeto
- * 5 CHF *2 = 10 CHF -> [DONE]
- * Duplicação de Dolar/Franco -> [DONE]
- * Igualdade comum -> [DONE]
- * Multiplicação comum -> DONE
- * Comparar Francos com Dólares -> [DONE]
- * Moeda? -> [DONE]
- * Deletar testFrancMultiplication? -> [DONE]
+ * $5 + $5 = $10
  *
  */
 
@@ -47,6 +38,15 @@ describe("MultiMoeda", () => {
       it("Test Currency", () => {
          expect(Money.dollar(1).currency()).toBe("USD");
          expect(Money.franc(1).currency()).toBe("CHF");
+      });
+
+      it("Test SimpleAddition", () => {
+         const five = Money.dollar(5);
+         const sum = five.plus(five);
+         const bank = new Bank();
+         const reduced = bank.reduce(sum, "USD");
+
+         expect(Money.dollar(10)).toEqual(reduced);
       });
    });
 });
