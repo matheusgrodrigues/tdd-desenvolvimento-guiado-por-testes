@@ -4,7 +4,7 @@ class Bank {
    constructor() {}
 
    reduce(source: Expression, to: string): Money {
-      return Money.dollar(10);
+      return source.reduce(to);
    }
 }
 

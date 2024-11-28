@@ -1,5 +1,6 @@
 import Bank from "../../../src/MultiMoeda/Bank";
 import Money from "../../../src/MultiMoeda/Money";
+import Sum from "../../../src/MultiMoeda/Sum";
 
 /*
  * Objetivo
@@ -8,7 +9,10 @@ import Money from "../../../src/MultiMoeda/Money";
  * hashCode()
  * Igualdade de null
  * Igualdade de objeto
+ * $5 + 10 CHF = $10 se a taxa é 2:1
  * $5 + $5 = $10
+ * Retornar Money de $5 + $5
+ * Bank.reduce( Money )
  *
  */
 
@@ -47,6 +51,29 @@ describe("MultiMoeda", () => {
          const reduced = bank.reduce(sum, "USD");
 
          expect(Money.dollar(10)).toEqual(reduced);
+      });
+
+      it("Test PlusReturnsSum", () => {
+         const five = Money.dollar(5);
+         const result = five.plus(five);
+         const sum = result as unknown as Sum;
+
+         expect(five).toEqual(sum.augend);
+         expect(five).toEqual(sum.addend);
+      });
+
+      it("Test reduceSum", () => {
+         const sum = new Sum(Money.dollar(3), Money.dollar(4));
+         const bank = new Bank();
+         const result = bank.reduce(sum, "USD");
+         expect(Money.dollar(7)).toEqual(result);
+      });
+
+      it("Test ReduceMoney", () => {
+         const bank = new Bank();
+         const result = bank.reduce(Money.dollar(1), "USD");
+
+         expect(Money.dollar(1)).toEqual(result);
       });
    });
 });

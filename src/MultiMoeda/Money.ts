@@ -1,7 +1,11 @@
-export interface Expression {}
+import Sum from "./Sum";
+
+export interface Expression {
+   reduce: (to: string) => Money;
+}
 
 class Money implements Expression {
-   protected amount: number = 0;
+   public amount: number = 0;
    protected _currency: string | null = "";
 
    constructor(amount: number, currency: string | null) {
@@ -35,7 +39,11 @@ class Money implements Expression {
    }
 
    plus(addend: Money) {
-      return new Money(this.amount + addend.amount, this._currency);
+      return new Sum(this, addend);
+   }
+
+   reduce(to: string) {
+      return this;
    }
 }
 
