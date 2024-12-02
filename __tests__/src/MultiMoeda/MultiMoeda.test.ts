@@ -9,12 +9,14 @@ import Sum from "../../../src/MultiMoeda/Sum";
  * hashCode()
  * Igualdade de null
  * Igualdade de objeto
- * $5 + 10 CHF = $10 se a taxa é 2:1
+ * $5 + 10 CHF = $10 se a taxa é 2:1 -> [DONE]
  * $5 + $5 = $10 - [DONE]
  * Retornar Money de $5 + $5
  * Bank.reduce( Money ) -> [DONE]
  * Reduzir Money com conversôes - [DONE]
  * Reduce(Bank, String) - [DONE]
+ * Sum.plus -> [DONE]
+ * Expression.times -: [DONE]
  *
  */
 
@@ -97,6 +99,33 @@ describe("MultiMoeda", () => {
          bank.addRate("CHF", "USD", 2);
          const result = bank.reduce(fiveBucks.plus(tenFrancs)!, "USD");
          expect(Money.dollar(10)).toEqual(result);
+      });
+
+      it("Test SumPlusMoney", () => {
+         const fiveBucks = Money.dollar(5);
+         const tenFrancs = Money.franc(10);
+         const bank = new Bank();
+         bank.addRate("CHF", "USD", 2);
+         const sum = new Sum(fiveBucks, tenFrancs.plus(fiveBucks));
+         const result = bank.reduce(sum, "USD");
+
+         expect(Money.dollar(15)).toEqual(result);
+      });
+
+      it("Test SumTimes", () => {
+         const fiveBucks = Money.dollar(5) as Expression;
+         const tenFrancs = Money.franc(10) as Expression;
+         const bank = new Bank();
+         bank.addRate("CHF", "USD", 2);
+         const sum = new Sum(fiveBucks, tenFrancs).times(2) as Expression;
+         const result = bank.reduce(sum, "USD");
+
+         expect(Money.dollar(20)).toEqual(result);
+      });
+
+      it("Test PlusSameCurrencyReturnsMoney", () => {
+         const sum = Money.dollar(1).plus(Money.dollar(1));
+         expect(sum instanceof Money);
       });
    });
 });

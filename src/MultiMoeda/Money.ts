@@ -4,6 +4,7 @@ import Sum from "./Sum";
 export interface Expression {
    reduce: (bank: Bank, to: string) => Money;
    plus: (addend: Expression) => Expression | null;
+   times: (multiplier: number) => Expression;
 }
 
 class Money implements Expression {

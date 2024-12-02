@@ -15,8 +15,12 @@ class Sum implements Expression {
       return new Money(amount, to);
    }
 
-   plus(addend: Expression): Expression | null {
-      return null;
+   plus(addend: Expression): Expression {
+      return new Sum(this, addend);
+   }
+
+   times(multiplier: number): Expression {
+      return new Sum(this.augend.times(multiplier), this.addend.times(multiplier));
    }
 }
 
