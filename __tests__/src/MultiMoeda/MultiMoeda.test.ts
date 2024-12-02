@@ -1,5 +1,5 @@
 import Bank from "../../../src/MultiMoeda/Bank";
-import Money from "../../../src/MultiMoeda/Money";
+import Money, { Expression } from "../../../src/MultiMoeda/Money";
 import Sum from "../../../src/MultiMoeda/Sum";
 
 /*
@@ -86,8 +86,17 @@ describe("MultiMoeda", () => {
          expect(JSON.stringify(Money.dollar(1))).toBe(JSON.stringify(result));
       });
 
-      it("Test ArrayEquals", () => {
-         // expect(["abc"]).toEqual(["abc"]);
+      it("Test identity rate", () => {
+         expect(1).toEqual(new Bank().rate("USD", "USD"));
+      });
+
+      it("Test MixedAddition", () => {
+         const fiveBucks = Money.dollar(5) as Expression;
+         const tenFrancs = Money.franc(10) as Expression;
+         const bank = new Bank();
+         bank.addRate("CHF", "USD", 2);
+         const result = bank.reduce(fiveBucks.plus(tenFrancs)!, "USD");
+         expect(Money.dollar(10)).toEqual(result);
       });
    });
 });

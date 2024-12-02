@@ -3,6 +3,7 @@ import Sum from "./Sum";
 
 export interface Expression {
    reduce: (bank: Bank, to: string) => Money;
+   plus: (addend: Expression) => Expression | null;
 }
 
 class Money implements Expression {
@@ -19,7 +20,7 @@ class Money implements Expression {
       return this.amount === money.amount && money._currency === this._currency;
    }
 
-   times(multiplier: number): Money {
+   times(multiplier: number): Expression {
       return new Money(this.amount * multiplier, this._currency);
    }
 
@@ -39,7 +40,7 @@ class Money implements Expression {
       return new Money(amount, "CHF");
    }
 
-   plus(addend: Money) {
+   plus(addend: Expression): Expression {
       return new Sum(this, addend);
    }
 
