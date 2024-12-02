@@ -10,9 +10,11 @@ import Sum from "../../../src/MultiMoeda/Sum";
  * Igualdade de null
  * Igualdade de objeto
  * $5 + 10 CHF = $10 se a taxa é 2:1
- * $5 + $5 = $10
+ * $5 + $5 = $10 - [DONE]
  * Retornar Money de $5 + $5
- * Bank.reduce( Money )
+ * Bank.reduce( Money ) -> [DONE]
+ * Reduzir Money com conversôes - [DONE]
+ * Reduce(Bank, String) - [DONE]
  *
  */
 
@@ -73,7 +75,19 @@ describe("MultiMoeda", () => {
          const bank = new Bank();
          const result = bank.reduce(Money.dollar(1), "USD");
 
-         expect(Money.dollar(1)).toEqual(result);
+         expect(result).toEqual(Money.dollar(1));
+      });
+
+      it("Test ReduceMoneyDifferentCurrency", () => {
+         const bank = new Bank();
+         bank.addRate("CHF", "USD", 2);
+         const result = bank.reduce(Money.franc(2), "USD");
+
+         expect(JSON.stringify(Money.dollar(1))).toBe(JSON.stringify(result));
+      });
+
+      it("Test ArrayEquals", () => {
+         // expect(["abc"]).toEqual(["abc"]);
       });
    });
 });
